@@ -17,7 +17,7 @@ int Fspeedd = 0;      // 前速
 int Rspeedd = 0;      // 右速
 int Lspeedd = 0;      // 左速
 int directionn = 0;   // 前=8 後=2 左=4 右=6 
-Servo myservo;        // 設 myservo
+//Servo myservo;        // 設 myservo
 int delay_time = 250; // 伺服馬達轉向後的穩定時間
 
 int Fgo = 8;         // 前進
@@ -36,7 +36,7 @@ void setup()
   pinMode(inputPin, INPUT);    // 定義超音波輸入腳位
   pinMode(outputPin, OUTPUT);  // 定義超音波輸出腳位   
 
-  myservo.attach(10);    // 定義伺服馬達輸出第5腳位(PWM)
+  //myservo.attach(10);    // 定義伺服馬達輸出第5腳位(PWM)
  }
 void advance(int a)     // 前進
     {
@@ -153,7 +153,7 @@ void detection()        //測量3個角度(0.90.179)
     }    
 void ask_pin_F()   // 量出前方距離 
     {
-      myservo.write(90);
+      //myservo.write(90);
       digitalWrite(outputPin, LOW);   // 讓超聲波發射低電壓2μs
       delayMicroseconds(2);
       digitalWrite(outputPin, HIGH);  // 讓超聲波發射高電壓10μs，這裡至少是10μs
@@ -167,7 +167,8 @@ void ask_pin_F()   // 量出前方距離
     }  
  void ask_pin_L()   // 量出左邊距離 
     {
-      myservo.write(5);
+      Serial.print("askpinL");
+      //myservo.write(5);
       delay(delay_time);
       digitalWrite(outputPin, LOW);   // 讓超聲波發射低電壓2μs
       delayMicroseconds(2);
@@ -182,7 +183,7 @@ void ask_pin_F()   // 量出前方距離
     }  
 void ask_pin_R()   // 量出右邊距離 
     {
-      myservo.write(177);
+      //myservo.write(177);
       delay(delay_time);
       digitalWrite(outputPin, LOW);   // 讓超聲波發射低電壓2μs
       delayMicroseconds(2);
@@ -198,7 +199,7 @@ void ask_pin_R()   // 量出右邊距離
     
 void loop()
  {
-    myservo.write(90);  //讓伺服馬達回歸 預備位置 準備下一次的測量
+    //myservo.write(90);  //讓伺服馬達回歸 預備位置 準備下一次的測量
     detection();        //測量角度 並且判斷要往哪一方向移動
       
    if(directionn == 2)  //假如directionn(方向) = 2(倒車)             
@@ -226,5 +227,3 @@ void loop()
     Serial.print("   ");    
    }
  }
-
-
