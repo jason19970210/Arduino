@@ -44,7 +44,7 @@ void turnR(int d)        //左轉(雙輪)
              analogWrite(pinLF,0);
              analogWrite(PWMEN2,230);
      delay(d * 50);
-    }
+     }
 void turnL(int e)        //右轉(雙輪)
     {
      digitalWrite(pinRF,LOW);
@@ -81,12 +81,12 @@ void back(int g)          //後退
 
 void loop()
  {
-    advance(1);              // 正常前進 
-    delay(1000);
-    back(1);                 // 正常後退
-    delay(1000);
-    turnL(1);                // 左轉
-    delay(1000);    
+    //advance(1);              // 正常前進 
+    //delay(1000);
+    //back(1);                 // 正常後退
+    //delay(1000);
+    //turnL(1);                // 左轉
+    //delay(1000);    
     turnR(1);                // 右轉 
     delay(1000);
  }
