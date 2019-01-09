@@ -25,19 +25,6 @@ int IRR;
 int IRL;
 
 
-void setup()
- {
-  Serial.begin(9600);     // 定義馬達輸出腳位 
-  pinMode(pinLB,OUTPUT); // 腳位 6 
-  pinMode(pinLF,OUTPUT); // 腳位 9 
-  pinMode(pinRB,OUTPUT); // 腳位 10 
-  pinMode(pinRF,OUTPUT); // 腳位 11 
-
-  pinMode(PWMEN1,OUTPUT); // 腳位 3 (PWM) 
-  pinMode(PWMEN2,OUTPUT); // 腳位 5 (PWM)
-
- }
-
 //#####################################################
 void getDist(){
   digitalWrite(SonorOut, LOW);
@@ -126,6 +113,36 @@ void turnR(int power){
   Lgo(power);
   Rback(power);
 }
+
+
+//#######################################################//
+
+void setup()
+ {
+  Serial.begin(9600);
+  
+  // Sonor Sensor
+  pinMode(SonorIn, INPUT);
+  pinMode(SonorOut, OUTPUT);
+  
+  //line sensor
+  pinMode(LineLeft, INPUT);
+  pinMode(LineRight, INPUT);
+  
+  //IR sensor
+  pinMode(IRRight,INPUT);
+  pinMode(IRLeft,INPUT);
+  
+  pinMode(pinLB,OUTPUT); // 腳位 6 
+  pinMode(pinLF,OUTPUT); // 腳位 9 
+  pinMode(pinRB,OUTPUT); // 腳位 10 
+  pinMode(pinRF,OUTPUT); // 腳位 11 
+
+  pinMode(PWMEN1,OUTPUT); // 腳位 3 (PWM) 
+  pinMode(PWMEN2,OUTPUT); // 腳位 5 (PWM)
+
+ }
+
 
 //#######################################################//
 void loop(){
