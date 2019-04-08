@@ -1,6 +1,18 @@
 #include <SPI.h>
 #include <MFRC522.h>     // 引用程式庫
 
+/*
+pin in order:
+  3.3V
+  Reset >> pin A0
+  GND
+  IRQ 中斷
+  MISO 主機<-周邊資料 >> pin 12
+  MOSI 主機->周邊資料 >> pin 11
+  SCK 時脈 >> pin 13
+  SDA 晶片選擇 >> pin 10
+*/
+
 #define RST_PIN      A0        // 讀卡機的重置腳位
 #define SS_PIN       10        // 晶片選擇腳位
 
