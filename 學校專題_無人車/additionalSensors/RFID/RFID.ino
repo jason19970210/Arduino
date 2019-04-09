@@ -3,9 +3,9 @@
 
 /*
 pin in order:
-  3.3V
-  Reset >> pin A0
-  GND
+  3.3V >> power pin 3.3
+  Reset >> pin A0 (option)
+  GND >> pin GND
   IRQ 中斷
   MISO 主機<-周邊資料 >> pin 12
   MOSI 主機->周邊資料 >> pin 11
@@ -30,6 +30,8 @@ void loop() {
     // 確認是否有新卡片
     if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
       byte *id = mfrc522.uid.uidByte;   // 取得卡片的UID
+      // `String` to replace `byte`
+      // Serial.print() > String
       byte idSize = mfrc522.uid.size;   // 取得UID的長度
 
       //Serial.print("UID: ");
