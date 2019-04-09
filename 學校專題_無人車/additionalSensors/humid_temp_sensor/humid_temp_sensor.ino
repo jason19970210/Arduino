@@ -10,7 +10,7 @@
 // for DHT11
 //   |-- VCC: 5V > Orange
 //   |-- GND: GND > Yellow
-//   |-- DATA: 2 (Digital) > Green
+//   |-- DATA: D2 (Digital) > Green
 int pinDHT11 = 2; // put 
 SimpleDHT11 dht11(pinDHT11);
 
