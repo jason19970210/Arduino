@@ -1,4 +1,17 @@
 //REF:http://arduino365.com/2018/11/22/3axisadxl345/
+//REF:http://report.inix.net/archives/434
+//REF:https://medium.com/maker-cup/%E8%A7%A3%E6%A7%8B%E8%A4%87%E9%9B%9C%E7%9A%84adxl345-%E4%B8%80-%E5%89%8D%E8%A8%80-c6d9fcc6bcbe
+//REF://http://lolikitty.pixnet.net/blog/post/165475299-arduino-%E5%85%A5%E9%96%80%E6%95%99%E5%AD%B8%EF%BC%9A%E8%AE%80%E5%8F%96-adxl345-%E4%B8%89%E8%BB%B8%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%A8%88
+
+//GND
+//VCC >> 3.3
+//CS >> 引VCC
+//INT1 >> empty
+//INT2 >> empty
+//SDO >> GND
+//SDA >> A4(uno), A20(mega)
+//SCL >> A5(uno), A21(mega)
+//SDA, SCL : I2C 接口數據端
 
 #include <Wire.h>
 #define Register_ID 0 //16進制 0x00 10進制 0
