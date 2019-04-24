@@ -1,8 +1,9 @@
-
+//REF:https://learn.adafruit.com/adafruit-arduino-lesson-13-dc-motors/breadboard-layout
 
 int motorPin = 3;
 //int speed = 225;
-//REF:https://learn.adafruit.com/adafruit-arduino-lesson-13-dc-motors/breadboard-layout
+
+
 void setup() {
   pinMode(motorPin, OUTPUT);
   Serial.begin(9600);
@@ -11,14 +12,15 @@ void setup() {
 
 }
 
+
 void loop() {
-//  if (Serial.available()){
-//    int speed = Serial.parseInt();
-//    if (speed >= 0 && speed <= 255){
-//      Serial.println(speed);
-//      analogWrite(motorPin,speed);
-//      }
-//    }
-analogWrite(motorPin,speed);
+ if (Serial.available()){
+   int speed = Serial.parseInt();
+   if (speed >= 0 && speed <= 255){
+     Serial.println(speed);
+     analogWrite(motorPin,speed);
+     }
+   }
+//analogWrite(motorPin,speed);
 
 }
