@@ -1,83 +1,84 @@
-#include<WiFi.h>
-#include<WiFiClient.h>
-#include<dht.h>
+// VCC : vin
+// Data : D5
+// GND : GND
 
-#define dht_dpin 5
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <dht.h>
+
+#define dht_dpin 5 
 dht DHT;
 
-const char * ssid = "";
-const char * password = "";
+const  char *  ssid  =  "5F B050C"; 
+const  char *  password  = "im5fb050c";
+
+// IFTTT Key
+const  char *  key  =  "hXmytxHquotaEQw593DchDHxE1y0JqNPOKYJQDGAXIf";
 
 
-//IFTTT Key
-const char * key = "fqAgzAy4KQWGJzQ1AvgXg5oHxjBgy02qWrJRqW1qUsm";
-
-const char * host = "maker.ifttt.com";
-const char * event = "notify_me";
-const int * httpsPort = 80;
+const char* host = "maker.ifttt.com";
+const char* event   = "notify_me";
+const int httpsPort = 80;
 
 WiFiClient client;
-
 
 void setup() {
   Serial.begin(115200);
   Serial.println();
-  Serial.print("Connecting to ");
-  Serial.print(ssid);
+  Serial.print("connecting to ");
+  Serial.println(ssid);
 
   WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED){
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(.);
-    }
+    Serial.print(".");
+  }
 
   Serial.println();
-  Serial.println("WiFi Connected");
-  Serial.print("IP Address : ");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-
 }
 
 void loop() {
-  Serial.println("Connecting to ");
+  Serial.print("connecting to ");
   Serial.println(host);
-  DHT.readall(dft_dpin);
+  DHT.read11(dht_dpin);
   float temp = DHT.temperature;
   float humi = DHT.humidity;
 
-  if (!client.connect(host, httpsPort)){
-    Serial.println("Connection Failed!!");
+  if (!client.connect(host, httpsPort)) {
+    Serial.println("connection failed");
     return;
-    }
+  }
 
+  // maker.ifttt.com/trigger/{event}/with/key/{key}
   String url = "/trigger/";
   url += event;
   url += "/with/key/";
   url += key;
-  url += "?value1=Temperature:";
-  url += temp;
+  url +="?value1=Temperature:";
+  url +=temp;
 
-
-  Serial.print("Request URL : ");
+  Serial.print("requesting URL: ");
   Serial.println(url);
 
-  client.print(String("GET ") + url + "HTTP/1.1\r\n" +
-                "Host: " + host + "\r\n" +
-                "Connection: Close\r\n\r\n");
-                
-  while (client.connected()){
-    String line = client.readStringUntil("\n");
-    if (line == "\r"){
+  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+               "Host: " + host + "\r\n" +
+               "Connection: close\r\n\r\n");
+
+  while (client.connected()) {
+    String line = client.readStringUntil('\n');
+    if (line == "\r") {
       break;
     }
   }
 
-  String line = client.readStringUntil("\n");
-  Serial.print("Reply : ");
+  String line = client.readStringUntil('\n');
+  Serial.print("reply: ");
   Serial.println(line);
-  Serial.println("Closing Connection !!");
+  Serial.println("closing connection");
   Serial.println();
 
   delay(10000);
-
 }
