@@ -9,7 +9,7 @@
 #define dht_dpin 5 
 dht DHT;
 
-const  char *  ssid  =  "5F B050C"; 
+const  char *  ssid  =  "5F B050C";
 const  char *  password  = "im5fb050c";
 
 // IFTTT Key
