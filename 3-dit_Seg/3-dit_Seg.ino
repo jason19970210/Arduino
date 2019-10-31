@@ -1,15 +1,29 @@
-//int i;
-//int j;
+// Usage : high(<int>, <int>)
+// the first int will be the int number you want to display on the 7-segment display
+// all pins goes to the digital pin
+/*
+      13  12  11  10  9   8
+      |   |   |   |   |   |
+ ------------------------------
+ |    ---     ---     ---     |
+ |   |   |   |   |   |   |    |
+ |    ---     ---     ---     |
+ |   |   |   |   |   |   |    |
+ |    ---  .  ---  .  ---  .  |
+ ------------------------------
+      |   |   |   |   |   |
+      2   3   4   5   6   7
+*/
+
+int timer = 9; //second
 
 #define d1 13
 #define d2 10
 #define d3 9
 
-const byte num[] = {B00000100};
-
 const int seg[8] = {2, 3, 4, 5, 6, 7, 8, 9};
 const int dig[3] = {d1, d2, d3};
-const int list[10] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
+const int list[10] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6}; //index of storage dicts
 
 void setup() {
   Serial.begin(9600);
@@ -22,11 +36,20 @@ void setup() {
 
 void loop() {
 
-  digitalWrite(dig[0],HIGH);
-  digitalWrite(dig[1],HIGH);
-  for(int i=9; i>=0; i--){
-    high(i,1000);
-    low(i, 0);
+  digitalWrite(dig[0],HIGH); // make the first digit not display
+  digitalWrite(dig[1],HIGH); // make the second digit not display
+  
+  // if you want to display `10`, you should make the second digit display `1`, then show `0` on the third digit
+
+
+  // Count Down
+  for(int i=timer; i>=0; i--){
+      if(i != 0){
+        high(i,1000);
+        low(i, 0);
+      } else { // i ==0
+        Serial.println("Times out");
+      }
   }
 
 }
@@ -121,11 +144,12 @@ byte * int9() {
   return s;
 }
 
+
 int high(int num, int d){
 
   if(num == 0){
     byte *pt = int0();
-      for (byte i = 0; i < list[0]; i++) {
+      for (byte i = 0; i < list[num]; i++) {
         //Serial.println(*(pt + i));
         digitalWrite(*(pt + i), HIGH);
       }
@@ -193,6 +217,8 @@ int high(int num, int d){
         digitalWrite(*(pt + i), HIGH);
       }
       delay(d);
+  } else {
+      //none
   }
 
 } // end of high()
@@ -270,6 +296,8 @@ int low(int num, int d){
         digitalWrite(*(pt + i), LOW);
       }
       delay(d);
+  } else {
+      //none
   }
 
 } // end of low()
