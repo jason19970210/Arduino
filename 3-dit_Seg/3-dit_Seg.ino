@@ -16,7 +16,7 @@
       2   3   4   5   6   7
 */
 
-int timer = 9; //second
+int timer = 18; //second
 
 #define d1 13
 #define d2 10
@@ -36,9 +36,9 @@ void setup() {
 }
 
 void loop() {
-
+  
   digitalWrite(dig[0],HIGH); // make the first digit not display
-  digitalWrite(dig[1],HIGH); // make the second digit not display
+  digitalWrite(dig[2],HIGH); // make the second digit not display
   
   // if you want to display `10`, you should make the second digit display `1`, then show `0` on the third digit
 
@@ -50,8 +50,12 @@ void loop() {
         low(i, 0);
       } else { // i ==0
         Serial.println("Times out");
+        high(i,1000);
+        low(i, 0);
       }
   }
+
+  
 
 }
 
