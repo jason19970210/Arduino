@@ -1,50 +1,32 @@
-#include <Servo.h>             //Servo library
+#include <ESP32_Servo.h>             //Servo library
  
-Servo servo_test;        //initialize a servo object for the connected servo  
-                
-int angle = 0;    
- 
+Servo servo;        //initialize a servo object for the connected servo  
+int pos = 0;
+
 void setup() { 
-  Serial.begin(9600);
-  servo_test.attach(33); // attach the signal pin of servo to pin9 of arduino
-  servo_test.writeMicroseconds (1405); //rotate to right
-  delay(1000);
-  servo_test.writeMicroseconds (1500);
-  delay(1000);
-  servo_test.writeMicroseconds (1600);
-  delay(1000);
-  servo_test.writeMicroseconds (1500);
-  
+  Serial.begin(115200);
+  servo.attach(26); // attach the signal pin of servo to pin9 of arduino
 } 
   
 void loop() { 
+  for(pos = 0; pos <= 180; pos+=1){
+    servo.write(pos);
+    delay(15);
+  }
+}
 
-  
-  
-//  servo_test.writeMicroseconds (2240); // rotate to left 
-//  delay (1005);
+void turnOffStoven(){
+  for (double posDegrees = 0.0; posDegrees <= 90.0; posDegrees+=2.5) {
+    servo.write(posDegrees);
+    Serial.println(posDegrees);
+    delay(20);
+  }
+}
 
-//    servo_test.write(45);
-//    delay(250);
-//    servo_test.write(90);
-//    delay(2000);
-//
-//    servo_test.write(135);
-//    delay(300);
-//    servo_test.write(92);
-//    delay(2000);
-//  for(angle = 0; angle <= 90; angle += 1){    // command to move from 0 degrees to 180 degrees                           
-//    servo_test.write(angle);                 //command to rotate the servo to the specified angle
-//    Serial.println(angle);
-//    delay(15);                       
-//  } 
- 
-  
-//  for(angle = 180; angle>=1; angle-=5)     // command to move from 180 degrees to 0 degrees 
-//  {                                
-//    servo_test.write(angle);              //command to rotate the servo to the specified angle
-//    delay(5);                       
-//  } 
-//
-//    delay(1000);
+void turnOnStoven(){
+  for (double posDegrees = 180.0; posDegrees >= 90.0; posDegrees-=2.4) {
+    servo.write(posDegrees);
+    Serial.println(posDegrees);
+    delay(20);
+  }
 }
