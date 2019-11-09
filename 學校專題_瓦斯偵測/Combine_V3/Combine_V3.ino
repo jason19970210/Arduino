@@ -25,7 +25,7 @@
 // Nagitive - GND
 
 // MQ-2 Sensor
-// AD - 
+// AD - SVP (A0)
 #include <ESP32_Servo.h> 
 #include "esp32-hal-ledc.h" 
 #include <MQ2.h>
