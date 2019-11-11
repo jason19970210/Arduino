@@ -127,16 +127,16 @@ BLYNK_WRITE(V2){
   } else { // the situation of buttonStatus == 1
     if(stovenStatus == 0){
       turnOnStoven();
-      stovenStatus = 1; // 1,1
-      
+      stovenStatus = 1;
+      // Count Down
       for(int i=t; i>=0; i--){
         float value = getGasValue();
         Blynk.virtualWrite(V1, value);
         if(value > 80){
           break;
         } else {
-          high(i, 500);
-          low(i, 500);
+          high(i, 1000);
+          low(i, 0);
         }
       }
       turnOffStoven();
