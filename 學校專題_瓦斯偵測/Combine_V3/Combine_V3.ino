@@ -26,6 +26,11 @@
 
 // MQ-2 Sensor
 // AD - SVP (A0)
+// D0 - null
+// GND - GND
+// VCC - +5V
+
+
 #include <ESP32_Servo.h> 
 #include "esp32-hal-ledc.h" 
 #include <MQ2.h>
@@ -188,6 +193,7 @@ void turnOffStoven(){
     ledcWrite(2, i);
     delay(20);
   }
+  ledcWrite(2,5000);
   /*
   for (double posDegrees = 0.0; posDegrees <= 90.0; posDegrees+=2.5) {
     servo.write(posDegrees);
