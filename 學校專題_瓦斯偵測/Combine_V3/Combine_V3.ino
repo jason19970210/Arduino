@@ -133,7 +133,13 @@ BLYNK_WRITE(V2){
         float value = getGasValue();
         Blynk.virtualWrite(V1, value);
         if(value > 80){
-          break;
+          Serial.println("Alert and turning off the stoven");
+          turnOffStoven();
+          stovenStatus = 0;
+          Blynk.virtualWrite(V2, LOW);
+          Blynk.virtualWrite(V0, "https://maker.ifttt.com/trigger/GES_Notification/with/key/d0T3bbLTNeQTgEawRi79GBl7qIumaetxdNI3xvQ4cn2?value1=瓦斯外漏_瓦斯爐開啟狀態&value2=瓦斯爐已關閉！");
+          shortBeep(200, 10);
+          return;
         } else {
           high(i, 1000);
           low(i, 0);
