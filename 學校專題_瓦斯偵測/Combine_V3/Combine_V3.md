@@ -254,7 +254,7 @@ void shortBeep(int d, int times) {
           return s;
         }
         ```
-- high() & low() Function
+- high() & low() Function for display numbers
     ```cpp
     int high(int num, int d){
     
