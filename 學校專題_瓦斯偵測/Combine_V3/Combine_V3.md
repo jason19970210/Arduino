@@ -35,9 +35,9 @@ Declaration
 #define d2 19
 #define d3 23
 
-char auth[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; //BLYNK Auth Token
-char ssid[] = "WINLab-2.4Ghz"; // 
-char pass[] = "error1234";
+char auth[] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // BLYNK Auth Token
+char ssid[] = "xxxxx"; // Wifi SSID
+char pass[] = "xxxxxxxx"; // Wifi Password
 int pos = 0;
 int MQpin = A0;
 const int dig[3] = {d1, d2, d3};
