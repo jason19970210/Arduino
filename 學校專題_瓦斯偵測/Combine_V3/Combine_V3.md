@@ -6,7 +6,7 @@
 1. [ESP32 Devkit V4 Board Layout](https://raw.githubusercontent.com/jason19970210/MarkdownPhotos/master/47.jpg)
 2. Arduino IDE
 3. Buzzer with 2 pins
-4. MQ-2 Gas Sensor
+4. MQ-5 Gas Sensor
 5. GWS Servo S35 STD
 6. 3 Digits 7 Segment Display
 
@@ -23,6 +23,8 @@ Libraries
 #include <ESP32_Servo.h> 
 #include "esp32-hal-ledc.h" 
 #include <MQ2.h>
+//`MQ2.h` is compatible with MQ-5 Sensor and also MQ-2 Sensor
+//But we didnt test with other MQ series sensors
 //#include <WiFi.h>
 //#include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
@@ -53,7 +55,7 @@ long previousTime = 0;
 long interval = 1000;
 
 Servo servo;
-MQ2 mq2(MQpin);
+MQ2 mq5(MQpin);
 ```
 
 Setup
@@ -61,7 +63,7 @@ Setup
 void setup() {
   Serial.begin(115200);
   Blynk.begin(auth, ssid, pass);
-  mq2.begin();
+  mq5.begin();
   pinMode(15, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(0, OUTPUT);
@@ -133,7 +135,7 @@ void turnOnStoven(){
 }
 ```
 
-- Get value from MQ-2 sensor
+- Get value from MQ-5 sensor
 ```cpp
 float getGasValue(){
   float lpg = mq2.readLPG();
