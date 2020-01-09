@@ -24,7 +24,7 @@
 // Positive - pin33
 // Nagitive - GND
 
-// MQ-2 Sensor
+// MQ-5 Sensor
 // AD - SVP (A0)
 // D0 - null
 // GND - GND
@@ -43,9 +43,9 @@
 #define d2 19
 #define d3 23
 
-char auth[] = "Iu7xE0_N-xwjN9z1CHTTebiTApZmQjAW";
-char ssid[] = "WINLab-2.4Ghz";
-char pass[] = "error1234";
+char auth[] = "xxxxxxxxxxxxxxxxxxxxxxxx";
+char ssid[] = "xxxxxxxx";  // Wifi SSID Here
+char pass[] = "xxxxxxxx";  // Wifi Password Here
 int pos = 0;
 int MQpin = A0;
 const int dig[3] = {d1, d2, d3};
@@ -61,7 +61,7 @@ long previousTime = 0;
 long interval = 1000;
 
 Servo servo;
-MQ2 mq2(MQpin);
+MQ2 mq5(MQpin);
 
 void setup() {
   Serial.begin(115200);
@@ -225,7 +225,7 @@ void turnOnStoven(){
 }
 
 float getGasValue(){
-  float lpg = mq2.readLPG();
+  float lpg = mq5.readLPG();
   if(100*lpg/2100000000 > 100){
     return 100;
   } else {
