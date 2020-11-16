@@ -1,4 +1,4 @@
-０// TODO : Break loop while count down
+// TODO : Break loop while count down
 
 
 // \/ 7Segment Display connect with ESP32
